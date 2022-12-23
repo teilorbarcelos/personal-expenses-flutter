@@ -41,7 +41,25 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            Card(child: Text('Lista de transações'))
+            Column(
+              children: _transactions.map((transactionItem) {
+                return Card(
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Text(transactionItem.value.toString()),
+                      ),
+                      Column(
+                        children: [
+                          Text(transactionItem.title),
+                          Text(transactionItem.date.toString())
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              }).toList(),
+            )
           ],
         ));
   }
