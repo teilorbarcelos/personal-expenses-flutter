@@ -50,14 +50,30 @@ class MyHomePage extends StatelessWidget {
                         margin:
                             EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2)),
+                            border: Border.all(color: Colors.purple, width: 2)),
                         padding: EdgeInsets.all(10),
-                        child: Text(transactionItem.value.toString()),
+                        child: Text(
+                          'R\$ ${transactionItem.value.toStringAsFixed(2)}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.purple),
+                        ),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(transactionItem.title),
-                          Text(transactionItem.date.toString())
+                          Text(
+                            transactionItem.title,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            transactionItem.date.toString(),
+                            style: TextStyle(color: Colors.grey),
+                          )
                         ],
                       )
                     ],
