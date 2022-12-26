@@ -9,44 +9,49 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transactions.map((transactionItem) {
-        return Card(
-          child: Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.purple, width: 2)),
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'R\$ ${transactionItem.value.toStringAsFixed(2)}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.purple),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    transactionItem.title,
+    return Container(
+      height: 300,
+      child: ListView.builder(
+        itemCount: transactions.length,
+        itemBuilder: (ctx, index) {
+          final transactionItem = transactions[index];
+          return Card(
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.purple, width: 2)),
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'R\$ ${transactionItem.value.toStringAsFixed(2)}',
                     style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.purple),
                   ),
-                  Text(
-                    DateFormat('dd/MM/yyyy').format(transactionItem.date),
-                    style: TextStyle(color: Colors.grey),
-                  )
-                ],
-              )
-            ],
-          ),
-        );
-      }).toList(),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      transactionItem.title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      DateFormat('dd/MM/yyyy').format(transactionItem.date),
+                      style: TextStyle(color: Colors.grey),
+                    )
+                  ],
+                )
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
