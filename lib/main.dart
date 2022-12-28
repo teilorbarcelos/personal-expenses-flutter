@@ -20,10 +20,12 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Despesas Pessoais'),
-        ),
-        body: Column(
+      appBar: AppBar(
+        title: Text('Despesas Pessoais'),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
@@ -35,6 +37,11 @@ class MyHomePage extends StatelessWidget {
             ),
             TransactionUser()
           ],
-        ));
+        ),
+      ),
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
   }
 }
