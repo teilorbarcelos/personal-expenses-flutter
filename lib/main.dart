@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:personal_expences/components/transaction_form.dart';
@@ -15,9 +16,15 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        colorScheme: ColorScheme.light(secondary: Colors.amber),
-      ),
+          primarySwatch: Colors.purple,
+          colorScheme: ColorScheme.light(secondary: Colors.amber),
+          fontFamily: 'Quicksand',
+          appBarTheme: AppBarTheme(
+            toolbarTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ))),
     );
   }
 }
@@ -74,7 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Despesas Pessoais'),
+        title: Text(
+          'Despesas Pessoais',
+          style: Theme.of(context).appBarTheme.toolbarTextStyle,
+        ),
         actions: [
           IconButton(
               onPressed: () => _openTransactionFormModal(context),
