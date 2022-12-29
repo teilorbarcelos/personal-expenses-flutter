@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:personal_expences/components/chart.dart';
 import 'package:personal_expences/components/transaction_form.dart';
 import 'package:personal_expences/components/transaction_list.dart';
 import 'package:personal_expences/models/transaction.dart';
@@ -20,7 +21,7 @@ class ExpensesApp extends StatelessWidget {
           colorScheme: ColorScheme.light(secondary: Colors.amber),
           fontFamily: 'Quicksand',
           appBarTheme: AppBarTheme(
-            toolbarTextStyle: TextStyle(
+              toolbarTextStyle: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -38,10 +39,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
-    // Transaction(
-    //     id: 't1', title: 'Aluguel', value: 1109.37, date: DateTime.now()),
-    // Transaction(
-    //     id: 't2', title: 'Condomínio', value: 359.25, date: DateTime.now()),
+    Transaction(
+        id: 't1',
+        title: 'Aluguel',
+        value: 1109.37,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't2',
+        title: 'Condomínio',
+        value: 359.25,
+        date: DateTime.now().subtract(Duration(days: 4))),
     // Transaction(id: 't3', title: '#01', value: 359.25, date: DateTime.now()),
     // Transaction(id: 't4', title: '#02', value: 359.25, date: DateTime.now()),
     // Transaction(id: 't5', title: '#03', value: 359.25, date: DateTime.now()),
@@ -54,6 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // Transaction(id: 't12', title: '#10', value: 359.25, date: DateTime.now()),
     // Transaction(id: 't13', title: '#11', value: 359.25, date: DateTime.now())
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((transaction) {
+      return transaction.date
+          .isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -94,14 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              child: Card(
-                color: Colors.blue,
-                child: Text('Gráfico'),
-                elevation: 5,
-              ),
-            ),
+          children: [
+            Chart(recentTransactions: _recentTransactions),
             TransactionList(transactions: _transactions),
           ],
         ),
