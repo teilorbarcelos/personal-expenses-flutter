@@ -21,10 +21,6 @@ class Chart extends StatelessWidget {
         }
       }
 
-      print(DateFormat.E().format(weekDay)[0]);
-      print(daySum);
-
-
       return {'day': DateFormat.E().format(weekDay)[0], 'value': daySum};
     });
   }
