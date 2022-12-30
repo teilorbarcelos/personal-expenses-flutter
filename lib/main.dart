@@ -17,15 +17,23 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
-          primarySwatch: Colors.purple,
-          colorScheme: ColorScheme.light(secondary: Colors.amber),
-          fontFamily: 'Quicksand',
-          appBarTheme: AppBarTheme(
-              toolbarTextStyle: TextStyle(
+        primarySwatch: Colors.purple,
+        colorScheme: ColorScheme.light(secondary: Colors.amber),
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              button: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+        appBarTheme: AppBarTheme(
+          toolbarTextStyle: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 18,
             fontWeight: FontWeight.bold,
-          ))),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -49,8 +57,16 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Condomínio',
         value: 359.25,
         date: DateTime.now().subtract(Duration(days: 4))),
-    Transaction(id: 't3', title: '#01', value: 1359.25, date: DateTime.now().subtract(Duration(days: 5))),
-    Transaction(id: 't4', title: '#02', value: 659.25, date: DateTime.now().subtract(Duration(days: 5))),
+    Transaction(
+        id: 't3',
+        title: '#01',
+        value: 1359.25,
+        date: DateTime.now().subtract(Duration(days: 5))),
+    Transaction(
+        id: 't4',
+        title: '#02',
+        value: 659.25,
+        date: DateTime.now().subtract(Duration(days: 5))),
     // Transaction(id: 't5', title: '#03', value: 359.25, date: DateTime.now()),
     // Transaction(id: 't6', title: '#04', value: 359.25, date: DateTime.now()),
     // Transaction(id: 't7', title: '#05', value: 359.25, date: DateTime.now()),
