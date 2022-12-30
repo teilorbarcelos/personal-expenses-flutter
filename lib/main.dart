@@ -101,10 +101,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return TransactionForm(addTransaction: _addTransaction);
-        });
+      context: context,
+      builder: (_) {
+        return TransactionForm(addTransaction: _addTransaction);
+      },
+    );
   }
 
   @override
