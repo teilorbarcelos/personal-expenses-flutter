@@ -28,7 +28,8 @@ class Chart extends StatelessWidget {
   const Chart({required this.recentTransactions, super.key});
 
   double get _weekTotalValue {
-    return groupedTransactions.fold(0.0, (total, currentItem) => total + (currentItem['value'] as double));
+    return groupedTransactions.fold(
+        0.0, (total, currentItem) => total + (currentItem['value'] as double));
   }
 
   @override
@@ -36,13 +37,21 @@ class Chart extends StatelessWidget {
     return Card(
         elevation: 6,
         margin: EdgeInsets.all(20),
-        child: Row(
-          children: groupedTransactions.map((transaction) {
-            return ChartBar(
-                label: transaction['day'] as String,
-                percentage: (transaction['value'] as double) / _weekTotalValue,
-                dayValue: transaction['value'] as double);
-          }).toList(),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: groupedTransactions.map((transaction) {
+              return Flexible(
+                fit: FlexFit.loose,
+                child: ChartBar(
+                    label: transaction['day'] as String,
+                    percentage:
+                        (transaction['value'] as double) / _weekTotalValue,
+                    dayValue: transaction['value'] as double),
+              );
+            }).toList(),
+          ),
         ));
   }
 }

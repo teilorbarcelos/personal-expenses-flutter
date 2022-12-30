@@ -38,40 +38,25 @@ class TransactionList extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 final transactionItem = transactions[index];
                 return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Theme.of(context).colorScheme.primary,
-                                width: 2)),
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          'R\$ ${transactionItem.value.toStringAsFixed(2)}',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context).colorScheme.primary),
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 5,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: FittedBox(
+                          child: Text('R\$ ${transactionItem.value}'),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            transactionItem.title,
-                            style:
-                                Theme.of(context).appBarTheme.toolbarTextStyle,
-                          ),
-                          Text(
-                            DateFormat('dd/MM/yyyy')
-                                .format(transactionItem.date),
-                            style: TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      )
-                    ],
+                    ),
+                    title: Text(transactionItem.title,
+                        style: Theme.of(context).appBarTheme.toolbarTextStyle),
+                    subtitle: Text(
+                        DateFormat('d MMM y').format(transactionItem.date)),
                   ),
                 );
               },
