@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ChartBar extends StatelessWidget {
   final String label;
@@ -16,12 +14,12 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 20,
           child: FittedBox(child: Text('R\$${dayValue.toStringAsFixed(2)}')),
         ),
-        SizedBox(height: 5),
-        Container(
+        const SizedBox(height: 5),
+        SizedBox(
           height: 60,
           width: 10,
           child: Stack(
@@ -33,7 +31,7 @@ class ChartBar extends StatelessWidget {
                       color: Colors.grey,
                       width: 1.0,
                     ),
-                    color: Color.fromRGBO(220, 220, 220, 1),
+                    color: const Color.fromRGBO(220, 220, 220, 1),
                     borderRadius: BorderRadius.circular(5)),
               ),
               FractionallySizedBox(
@@ -47,7 +45,7 @@ class ChartBar extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(label),
       ],
     );

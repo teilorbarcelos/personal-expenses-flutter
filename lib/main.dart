@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:personal_expences/components/chart.dart';
@@ -7,7 +6,7 @@ import 'package:personal_expences/components/transaction_form.dart';
 import 'package:personal_expences/components/transaction_list.dart';
 import 'package:personal_expences/models/transaction.dart';
 
-void main() => runApp(ExpensesApp());
+void main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
   const ExpensesApp({super.key});
@@ -15,18 +14,18 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      home: const MyHomePage(),
       theme: ThemeData(
         primarySwatch: Colors.purple,
-        colorScheme: ColorScheme.light(secondary: Colors.amber),
+        colorScheme: const ColorScheme.light(secondary: Colors.amber),
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-              button: TextStyle(
+              button: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           toolbarTextStyle: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 18,
@@ -39,7 +38,7 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -51,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Transaction> get _recentTransactions {
     return _transactions.where((transaction) {
       return transaction.date
-          .isAfter(DateTime.now().subtract(Duration(days: 7)));
+          .isAfter(DateTime.now().subtract(const Duration(days: 7)));
     }).toList();
   }
 
@@ -96,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
               onPressed: () => _openTransactionFormModal(context),
-              icon: Icon(Icons.add))
+              icon: const Icon(Icons.add))
         ],
       ),
       body: SingleChildScrollView(
@@ -110,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () => _openTransactionFormModal(context)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

@@ -1,12 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) addTransaction;
 
-  TransactionForm({required this.addTransaction, super.key});
+  const TransactionForm({required this.addTransaction, super.key});
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
@@ -55,14 +53,14 @@ class _TransactionFormState extends State<TransactionForm> {
             TextField(
               controller: _titleController,
               onSubmitted: (_) => _submitForm(),
-              decoration: InputDecoration(labelText: 'Título'),
+              decoration: const InputDecoration(labelText: 'Título'),
             ),
             TextField(
                 controller: _valueController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 onSubmitted: (_) => _submitForm(),
-                decoration: InputDecoration(labelText: 'Valor (R\$)')),
-            Container(
+                decoration: const InputDecoration(labelText: 'Valor (R\$)')),
+            SizedBox(
               height: 70,
               child: Row(
                 children: [
