@@ -46,68 +46,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 1109.37,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: Random().nextDouble().toString(),
-        title: 'teste',
-        value: 42,
-        date: DateTime.now().subtract(Duration(days: 3))),
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((transaction) {
@@ -165,7 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(recentTransactions: _recentTransactions),
-            TransactionList(transactions: _transactions, onRemove: _removeTransaction),
+            TransactionList(
+                transactions: _transactions, onRemove: _removeTransaction),
           ],
         ),
       ),
