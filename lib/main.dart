@@ -25,10 +25,10 @@ class ExpensesApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           toolbarTextStyle: TextStyle(
             fontFamily: 'OpenSans',
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -108,11 +108,11 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: availableHeight * 0.2,
+              height: availableHeight * 0.3,
               child: Chart(recentTransactions: _recentTransactions),
             ),
             Container(
-              height: availableHeight * 0.8,
+              height: availableHeight * 0.7,
               child: TransactionList(
                   transactions: _transactions, onRemove: _removeTransaction),
             ),
