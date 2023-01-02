@@ -87,15 +87,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     final AppBar appBar = AppBar(
       title: Text(
         'Despesas Pessoais',
         style: Theme.of(context).appBarTheme.toolbarTextStyle,
       ),
       actions: [
+        if (isLandscape)
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  _showChart = !_showChart;
+                });
+              },
+              icon: Icon(_showChart ? Icons.list : Icons.show_chart)),
         IconButton(
             onPressed: () => _openTransactionFormModal(context),
-            icon: const Icon(Icons.add))
+            icon: const Icon(Icons.add)),
       ],
     );
     final availableHeight = MediaQuery.of(context).size.height -
@@ -108,30 +118,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Exibir Gráfico'),
-                Switch(
-                    value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    }),
-              ],
-            ),
-            _showChart
-                ? Container(
-                    height: availableHeight * 0.3,
-                    child: Chart(recentTransactions: _recentTransactions),
-                  )
-                : Container(
-                    height: availableHeight * 0.7,
-                    child: TransactionList(
-                        transactions: _transactions,
-                        onRemove: _removeTransaction),
-                  ),
+            if (_showChart || !isLandscape)
+              Container(
+                height: availableHeight * (isLandscape ? 0.7 : 0.3),
+                child: Chart(recentTransactions: _recentTransactions),
+              ),
+            if (!_showChart || !isLandscape)
+              Container(
+                height: availableHeight * 0.7,
+                child: TransactionList(
+                    transactions: _transactions, onRemove: _removeTransaction),
+              ),
           ],
         ),
       ),
