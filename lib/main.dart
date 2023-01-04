@@ -103,10 +103,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
+    final listIcon = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
+    final chartIcon = Platform.isIOS ? CupertinoIcons.refresh : Icons.show_chart;
     final actions = [
       if (isLandscape)
         _getIconButton(
-          _showChart ? Icons.list : Icons.show_chart,
+          _showChart ? listIcon : chartIcon,
           () {
             setState(() {
               _showChart = !_showChart;
@@ -119,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ];
 
-    final PreferredSizeWidget andridAppBar = AppBar(
+    final PreferredSizeWidget androidAppBar = AppBar(
       title: Text(
         'Despesas Pessoais',
         style: Theme.of(context).appBarTheme.toolbarTextStyle,
@@ -136,25 +138,27 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final availableHeight = mediaQuery.size.height -
-        andridAppBar.preferredSize.height -
+        androidAppBar.preferredSize.height -
         mediaQuery.padding.top;
 
-    final bodyPage = SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (_showChart || !isLandscape)
-            Container(
-              height: availableHeight * (isLandscape ? 0.7 : 0.3),
-              child: Chart(recentTransactions: _recentTransactions),
-            ),
-          if (!_showChart || !isLandscape)
-            Container(
-              height: availableHeight * (isLandscape ? 1 : 0.7),
-              child: TransactionList(
-                  transactions: _transactions, onRemove: _removeTransaction),
-            ),
-        ],
+    final bodyPage = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (_showChart || !isLandscape)
+              Container(
+                height: availableHeight * (isLandscape ? 0.7 : 0.3),
+                child: Chart(recentTransactions: _recentTransactions),
+              ),
+            if (!_showChart || !isLandscape)
+              Container(
+                height: availableHeight * (isLandscape ? 1 : 0.7),
+                child: TransactionList(
+                    transactions: _transactions, onRemove: _removeTransaction),
+              ),
+          ],
+        ),
       ),
     );
 
@@ -164,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: bodyPage,
           )
         : Scaffold(
-            appBar: andridAppBar,
+            appBar: androidAppBar,
             body: bodyPage,
             floatingActionButton: FloatingActionButton(
                 child: const Icon(Icons.add),
