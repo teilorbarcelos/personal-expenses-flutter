@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:personal_expences/components/adaptative_button.dart';
+import 'package:personal_expences/components/adaptative_date_picker.dart';
 import 'package:personal_expences/components/adaptative_text_field.dart';
 
 class TransactionForm extends StatefulWidget {
@@ -24,23 +24,6 @@ class _TransactionFormState extends State<TransactionForm> {
       return;
     }
     widget.addTransaction(text, value, _selectedDate);
-  }
-
-  _showDatepicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2019),
-      lastDate: DateTime.now(),
-    ).then((date) {
-      if (date == null) {
-        return;
-      }
-
-      setState(() {
-        _selectedDate = date;
-      });
-    });
   }
 
   @override
@@ -69,22 +52,11 @@ class _TransactionFormState extends State<TransactionForm> {
                 onSubmitted: (_) => _submitForm(),
                 label: 'Valor (R\$)',
               ),
-              SizedBox(
-                height: 70,
-                child: Row(
-                  children: [
-                    Text(
-                        'Data: ${DateFormat('dd/MM/y').format(_selectedDate)}'),
-                    TextButton(
-                      onPressed: _showDatepicker,
-                      child: Text('Alterar Data',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ),
-                  ],
-                ),
+              AdaptativeDatePicker(
+                selectedDate: _selectedDate,
+                onDateChanged: (date) => setState(() {
+                  _selectedDate = date;
+                }),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

@@ -27,7 +27,7 @@ class ExpensesApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           toolbarTextStyle: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 20,
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final ObstructingPreferredSizeWidget iosAppBar = CupertinoNavigationBar(
-      middle: Text('Despesas Pessoais'),
+      middle: const Text('Despesas Pessoais'),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: actions,
@@ -147,12 +147,12 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (_showChart || !isLandscape)
-              Container(
+              SizedBox(
                 height: availableHeight * (isLandscape ? 0.7 : 0.3),
                 child: Chart(recentTransactions: _recentTransactions),
               ),
             if (!_showChart || !isLandscape)
-              Container(
+              SizedBox(
                 height: availableHeight * (isLandscape ? 1 : 0.7),
                 child: TransactionList(
                     transactions: _transactions, onRemove: _removeTransaction),

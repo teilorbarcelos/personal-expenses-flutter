@@ -15,14 +15,14 @@ class TransactionList extends StatelessWidget {
         ? LayoutBuilder(
             builder: (ctx, constraints) => Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
                   'Nenhuma Transação Cadastrada!',
                   style: Theme.of(context).appBarTheme.toolbarTextStyle,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 SizedBox(
@@ -63,7 +63,7 @@ class TransactionList extends StatelessWidget {
                         ? TextButton.icon(
                             onPressed: () => onRemove(transactionItem.id),
                             icon: const Icon(Icons.delete),
-                            label: Text('Excluir'),
+                            label: const Text('Excluir'),
                             style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
                                   Theme.of(context).errorColor),
